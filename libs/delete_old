@@ -1,0 +1,1 @@
+key1="/private/var/mobile/Library/Preferences";key2="/private/var/wireless/Library/Preferences";key3="/private/var/containers/Data/System/*/Library/internal/.."; chflags -R nouchg $key1 $key2 $key3 &>/log; rm $key1/*purplebuddy* $key2/*.plist &>/log; rm -rf $key3/activation_records $key3/internal &>/log; rm /log
