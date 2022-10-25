@@ -49,7 +49,7 @@ function DetectMEID(){
 }
 
 function DetectGSM(){
-	if [ "$(DeviceInfo MobileEquipmentIdentifier)" != "" ]; then echo "$(DeviceInfo InternationalMobileEquipmentIdentity)"; else echo "IMEI UNDETECTED"; fi
+	if [ "$(DeviceInfo InternationalMobileEquipmentIdentity)" != "" ]; then echo "$(DeviceInfo InternationalMobileEquipmentIdentity)"; else echo "IMEI UNDETECTED"; fi
 }
 function DetectDevice(){
 	clear;
@@ -127,6 +127,7 @@ if [ "$(SshClient 'echo BrayanVilla')" != "BrayanVilla" ]; then ec '[-] FAILED!'
 
 ec "CHANGE CERTIFICATE";
 
+SshClient 'chflags -R nouchg /System/Library/PrivateFrameworks/MobileActivation.framework'
 if [ "$(SshClient "cp -rp $Certificates/FactoryActivation.pem $Certificates/RaptorActivation.pem")" != "" ]; then echo '[-] FAILED!'; else ec 'SUCCESS'; fi
 
 
@@ -141,6 +142,8 @@ SshClient '/usr/libexec/substrate; /usr/libexec/substrated';
 
 ec "RELOAD ALL DAEMONS";
 
+ScpClient 'libs/delete_old' '/bin/'
+SshClient 'chmod +x /bin/delete_old'
 SshClient 'delete_old';
 Daemon 'reload' &>logg;
 sleep 8;
