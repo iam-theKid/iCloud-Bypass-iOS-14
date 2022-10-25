@@ -27,5 +27,6 @@ __2: Execute this commands:__
 
 ***cd ~/Desktop/iCloud-Bypass-iOS-14/***
 
- 
+MAC Only: ***chmod +x Activate2.2.sh*** 
+
 ***./Activate2.2.sh***
